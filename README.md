@@ -159,23 +159,35 @@ Visual operational insights including:
 
 ---
 
-# 📸 Application Screenshots
+## 📸 Application Screenshots
 
-## Dashboard
+### 🏠 Dashboard
 
 ![Dashboard](screenshots/dashboard.png)
 
 ---
 
-## Log Upload & Parser
+### 📂 Log Upload & Parser
 
-![Logs](screenshots/logs-parser.png)
+![Log Upload](screenshots/logs-parser.png)
 
 ---
 
-## AI Troubleshooting Assistant
+### 🤖 AI Troubleshooting Assistant
 
 ![AI Assistant](screenshots/ai-assistant.png)
+
+---
+
+### 🔍 Root Cause Analysis
+
+![Root Cause Analysis](screenshots/root-cause-analysis.png)
+
+---
+
+### 📊 Analytics Dashboard
+
+![Analytics Dashboard](screenshots/analytics-dashboard.png)
 
 ---
 
