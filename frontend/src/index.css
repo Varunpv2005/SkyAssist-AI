@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-surface-border;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+
+  html:not(.dark) body {
+    @apply bg-gray-50 text-gray-900;
+  }
+
+  html:not(.dark) .card,
+  html:not(.dark) .card-hover {
+    @apply border-gray-200 bg-white shadow-sm;
+  }
+
+  html:not(.dark) .input-field {
+    @apply border-gray-300 bg-white text-gray-900 placeholder-gray-400;
+  }
+
+  html:not(.dark) aside,
+  html:not(.dark) header {
+    @apply border-gray-200 bg-white;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-surface-border hover:bg-gray-600;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-surface-border bg-surface-card p-5 shadow-lg transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:border-sky-500/40 hover:shadow-sky-500/10;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-400 transition-all duration-200 hover:bg-surface-hover hover:text-gray-100;
+  }
+
+  .nav-link-active {
+    @apply nav-link bg-sky-500/10 text-sky-400 hover:bg-sky-500/15 hover:text-sky-300;
+  }
+
+  .input-field {
+    @apply w-full rounded-lg border border-surface-border bg-surface px-4 py-2.5 text-sm text-gray-100 placeholder-gray-500 outline-none transition-colors focus:border-sky-500 focus:ring-1 focus:ring-sky-500/50;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-sky-500 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-surface-border bg-surface-card px-4 py-2.5 text-sm font-medium text-gray-300 transition-all hover:bg-surface-hover active:scale-[0.98];
+  }
+}

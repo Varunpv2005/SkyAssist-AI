@@ -1,0 +1,72 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: skyassist-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-skyassist}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-skyassist_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-skyassist_db}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-skyassist}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5433:5432"
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    container_name: skyassist-backend
+    restart: unless-stopped
+    env_file:
+      - docker/.env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-skyassist}:${POSTGRES_PASSWORD:-skyassist_secret}@db:5432/${POSTGRES_DB:-skyassist_db}
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      LOGS_DIR: /app/logs
+      ENVIRONMENT: development
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+    container_name: skyassist-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "80:80"
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: skyassist-ollama
+    restart: unless-stopped
+    profiles:
+      - ai
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+
+volumes:
+  pgdata:
+  ollama_data:
