@@ -183,23 +183,6 @@ Visual operational insights including:
 
 ![Root Cause Analysis](screenshots/root-cause-analysis.png)
 
----
-
-### 📊 Analytics Dashboard
-
-![Analytics Dashboard](screenshots/analytics-dashboard.png)
-
----
-
-## Root Cause Analysis
-
-![Root Cause](screenshots/root-cause-analysis.png)
-
----
-
-## Analytics Dashboard
-
-![Analytics](screenshots/analytics-dashboard.png)
 
 ---
 
