@@ -260,7 +260,7 @@ docker compose up -d --build
 
 # 👨‍💻 Author
 
-**Varun Venugopal**
+**Varun PV**
 
 Computer Science Engineering Student
 
